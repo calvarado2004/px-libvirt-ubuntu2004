@@ -1,0 +1,3 @@
+# Local .vagrant directories
+**/.vagrant/*
+**/disks/*

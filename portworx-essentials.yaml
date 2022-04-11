@@ -1,0 +1,45 @@
+# SOURCE: https://install.portworx.com/?operator=true&mc=false&kbver=1.22.5&oem=esse&user=f6ad1663-9947-11eb-a2c5-c24e499c7467&b=true&s=%2Fdev%2Fsdd&j=auto&kd=%2Fdev%2Fsdc&m=enp0s8&d=enp0s8&c=px-vboxlab-cluster-b76338c7-9902-4093-b1d4-d94ee313c7c4&stork=true&csi=true&mon=true&tel=false&st=k8s&promop=true
+kind: StorageCluster
+apiVersion: core.libopenstorage.org/v1
+metadata:
+  name: px-linux-kvm-cluster-essentials
+  namespace: kube-system
+  annotations:
+    portworx.io/install-source: "https://install.portworx.com/?operator=true&mc=false&kbver=1.22.5&oem=esse&user=f6ad1663-9947-11eb-a2c5-c24e499c7467&b=true&s=%2Fdev%2Fsdd&j=auto&kd=%2Fdev%2Fsdc&m=enp0s8&d=enp0s8&c=px-vboxlab-cluster-b76338c7-9902-4093-b1d4-d94ee313c7c4&stork=true&csi=true&mon=true&tel=false&st=k8s&promop=true"
+    portworx.io/misc-args: "--oem esse -cluster_domain alpharetta-ga"
+spec:
+  image: portworx/oci-monitor:2.10.0
+  imagePullPolicy: IfNotPresent
+  kvdb:
+    internal: true
+  storage:
+    devices:
+    - /dev/vdc
+    journalDevice: auto
+    kvdbDevice: /dev/vdb
+  network:
+    dataInterface: eth0
+    mgmtInterface: eth0
+  secretsProvider: k8s
+  stork:
+    image: openstorage/stork:2.9.0
+    enabled: true
+    args:
+      webhook-controller: "true"
+  autopilot:
+    enabled: true
+  monitoring:
+    prometheus:
+      enabled: true
+      exportMetrics: true
+  featureGates:
+    CSI: "true"
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: px-essential
+  namespace: kube-system
+data:
+  px-essen-user-id: ZjZhZDE2NjMtOTk0Ny0xMWViLWEyYzUtYzI0ZTQ5OWM3NDY3
+  px-osb-endpoint: aHR0cHM6Ly9weGVzc2VudGlhbHMucG9ydHdvcnguY29tL29zYi9iaWxsaW5nL3YxL3JlZ2lzdGVy
