@@ -23,7 +23,7 @@ Vagrant.configure("2") do |config|
     env: { "KUBERNETES_VERSION" => KUBERNETES_VERSION }
 
   config.vm.provision "shell", path: "local-storage/create-volumes.sh"
-  config.vm.disk :disk, size: "80GB", primary: true
+  config.vm.disk :disk, size: "120GB", primary: true
   
   config.vm.define "master.calvarado04.com" do |master|
     master.vm.hostname = "master.calvarado04.com"

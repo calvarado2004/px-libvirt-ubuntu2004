@@ -4,7 +4,7 @@ A Kubernetes cluster installed with Kubeadm aligned to CKA, CKAD and CKS specifi
 
 # Prerequisites
 
-Install Vagrant and Virtualbox on Linux or macOS hosts\
+Install Vagrant and Libvirt on Linux hosts. Sorry, macOS is not supported by Libvirt yet.\
 \
 -64GB of RAM recommended.\
 -12CPUs recommended.\
@@ -15,7 +15,7 @@ Your worker nodes will have the same resources that you specify for the worker n
 
 # Now using Ubuntu 20.04 instead of CentOS
 
-This version has been updated to Ubuntu 20.04 due to CentOS has been deprecated, creating only one disk of 200GB per worker node, one kvdb disk of 50GB and the root partition uses 40GB.
+This version has been updated to Ubuntu 20.04 due to CentOS has been deprecated, creating only one disk of 200GB per worker node, one kvdb disk of 40GB and the root partition uses 120GB.
 
 # Using Calico instead of Flannel
 
