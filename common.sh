@@ -68,6 +68,5 @@ systemctl enable kubelet
 systemctl start kubelet
 
 
-curl -L https://github.com/projectcalico/calico/releases/download/v3.22.1/calicoctl-linux-amd64 -o calicoctl
-
-chmod 755 calicoctl 
+echo Moving forward...
+echo
