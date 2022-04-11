@@ -25,7 +25,7 @@ Current versions (this can change in the future), that are working:\
 \
 -Kubernetes 1.23.5.
 \
--Kernel 5.4.0-96 with kernel-headers installed.
+-Kernel 5.4.0-105 with kernel-headers installed.
 \
 -Portworx 2.10.0 with CSI enabled.
 \
