@@ -74,7 +74,13 @@ Vagrant.configure("2") do |config|
     end
 
     master.vm.provision "shell", path: "portworx.sh"
-  end
+
+    master.vm.provision :file do |file|
+      file.source = "resolved.conf"
+      file.destination = "/etc/systemd/resolved.conf"
+    end
+   end
+
 
   (0..NUM_WORKERS-1).each do |i|
     config.vm.define "worker#{i}.calvarado04.com" do |worker|
@@ -95,7 +101,13 @@ Vagrant.configure("2") do |config|
         libvirt.storage :file, :size => '203G'
         libvirt.management_network_mac = MAC + i.to_s
       end    
-      
+     
+
+      worker.vm.provision :file do |file|
+        file.source = "resolved.conf"
+        file.destination = "/etc/systemd/resolved.conf"
+      end
+ 
       worker.vm.provision "shell", path: "worker.sh",
         env: { "MASTER_IP" => MASTER_IP, "TOKEN" => TOKEN }
     end
