@@ -11,6 +11,9 @@ echo Lets wait for all the nodes to become available. Sleeping for 60 seconds...
 
 sleep 60s
 
+
+vagrant ssh master.calvarado04.com -c "sudo kubectl --kubeconfig=/etc/kubernetes/admin.conf apply -f /tmp/nodelocaldns.yaml"
+
 #Deploy Portworx Enterprise
 vagrant ssh master.calvarado04.com -c "sudo kubectl --kubeconfig=/etc/kubernetes/admin.conf apply -f /tmp/portworx-enterprise.yaml"
 

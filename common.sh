@@ -21,7 +21,7 @@ curl -L https://download.opensuse.org/repositories/devel:kubic:libcontainers:sta
 curl -L https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable/$OS/Release.key | apt-key add -
 
 apt-get update 
-apt-get install -y apt-transport-https ca-certificates curl jq cri-o cri-o-runc linux-headers-$(uname -r) gcc cloud-guest-utils xfsprogs dbus nfs-common rpcbind nfs-kernel-server
+apt-get install -y buildah default-jre apt-transport-https ca-certificates curl jq cri-o cri-o-runc linux-headers-$(uname -r) gcc cloud-guest-utils xfsprogs dbus nfs-common rpcbind nfs-kernel-server
 
 modprobe overlay
 modprobe br_netfilter
@@ -34,6 +34,28 @@ net.bridge.bridge-nf-call-ip6tables = 1
 net.bridge.bridge-nf-call-arptables = 1
 net.ipv4.conf.all.rp_filter         = 0
 net.netfilter.nf_conntrack_max      = 1000000
+EOF
+
+
+
+
+cat <<EOF | tee /run/systemd/network/10-netplan-eth0.network
+[Match]
+Name=eth0
+
+[Link]
+RequiredForOnline=no
+
+[Network]
+DHCP=ipv4
+LinkLocalAddressing=ipv6
+DNS=8.8.8.8
+DNS=169.254.20.10
+DNS=192.168.121.1
+
+[DHCP]
+RouteMetric=100
+UseMTU=true
 EOF
 
 # Create the .conf file to load the modules at bootup
@@ -66,6 +88,9 @@ systemctl status crio
 
 systemctl enable kubelet
 systemctl start kubelet
+
+
+#resolvectl dns eth0 8.8.8.8 169.254.20.10 192.168.121.1
 
 
 echo Moving forward...

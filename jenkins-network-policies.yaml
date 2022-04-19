@@ -1,0 +1,83 @@
+#Default deny all traffic
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: default-deny-all
+  namespace: jenkins
+spec:
+  podSelector: {}
+  policyTypes:
+  - Ingress
+  - Egress
+---
+#Allow access to DNS on all pods, DNS is located on each nodde and also using the default kube-system service
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: allow-dns-access
+  namespace: jenkins
+spec:
+  podSelector:
+    matchLabels: {}
+  egress:
+  - to:
+    - namespaceSelector:
+        matchLabels:
+          name: kube-system
+    - ipBlock:
+        cidr: 192.168.121.0/24
+    - ipBlock:
+        cidr: 10.96.0.10/32
+    ports:
+    - protocol: UDP
+      port: 53
+    - protocol: TCP
+      port: 53
+    - protocol: TCP
+      port: 9253
+    - protocol: TCP
+      port: 9153
+---
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: allow-to-jenkins-port8080
+  namespace: jenkins
+spec:
+  podSelector:
+    matchLabels:
+      app.kubernetes.io/instance: jenkins
+  ingress:
+  - ports:
+    - port: 8080
+    - port: 50000
+  egress:
+  - to:
+    - ipBlock:
+        cidr: 192.168.121.0/24
+    ports:
+    - protocol: TCP
+      port: 22
+---
+kind: NetworkPolicy
+apiVersion: networking.k8s.io/v1
+metadata:
+  name: only-allow-internet
+  namespace: jenkins
+spec:
+  podSelector:
+    matchLabels:
+      app.kubernetes.io/instance: jenkins
+  egress:
+  - to:
+    - ipBlock:
+        cidr: 0.0.0.0/0
+        except:
+          - 10.0.0.0/8
+          - 192.168.0.0/16
+          - 172.16.0.0/20
+    ports:
+    - protocol: TCP
+      port: 443
+    - protocol: TCP
+      port: 80

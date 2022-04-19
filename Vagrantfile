@@ -59,10 +59,16 @@ Vagrant.configure("2") do |config|
     master.vm.provision "shell", path: "local-storage/install.sh"
    
     master.vm.provision :file do |file|
+      file.source = "nodelocaldns.yaml"
+      file.destination = "/tmp/nodelocaldns.yaml"
+    end
+
+    master.vm.provision :file do |file|
       file.source = "portworx-enterprise.yaml"
       file.destination = "/tmp/portworx-enterprise.yaml"
     end
 
+    
     master.vm.provision :file do |file|
       file.source = "portworx-essentials.yaml"
       file.destination = "/tmp/portworx-essentials.yaml"
