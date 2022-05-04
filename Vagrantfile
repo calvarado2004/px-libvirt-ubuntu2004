@@ -1,5 +1,5 @@
 #number of worker nodes
-NUM_WORKERS = 3
+NUM_WORKERS = 4
 # number of extra disks per worker
 NUM_DISKS = 1
 # size of each disk in gigabytes
@@ -83,10 +83,13 @@ Vagrant.configure("2") do |config|
 
     master.vm.provision :file do |file|
       file.source = "resolved.conf"
-      file.destination = "/etc/systemd/resolved.conf"
+      file.destination = "/tmp/resolved.conf"
     end
-   end
 
+    master.vm.provision "shell",
+      inline: "sudo mv /tmp/resolved.conf /etc/systemd/resolved.conf"
+
+   end
 
   (0..NUM_WORKERS-1).each do |i|
     config.vm.define "worker#{i}.calvarado04.com" do |worker|
@@ -111,8 +114,11 @@ Vagrant.configure("2") do |config|
 
       worker.vm.provision :file do |file|
         file.source = "resolved.conf"
-        file.destination = "/etc/systemd/resolved.conf"
+        file.destination = "/tmp/resolved.conf"
       end
+
+      worker.vm.provision "shell",
+        inline: "sudo mv /tmp/resolved.conf /etc/systemd/resolved.conf"
  
       worker.vm.provision "shell", path: "worker.sh",
         env: { "MASTER_IP" => MASTER_IP, "TOKEN" => TOKEN }

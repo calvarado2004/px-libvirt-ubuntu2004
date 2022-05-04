@@ -15,7 +15,7 @@ sleep 60s
 vagrant ssh master.calvarado04.com -c "sudo kubectl --kubeconfig=/etc/kubernetes/admin.conf apply -f /tmp/nodelocaldns.yaml"
 
 #Deploy Portworx Enterprise
-vagrant ssh master.calvarado04.com -c "sudo kubectl --kubeconfig=/etc/kubernetes/admin.conf apply -f /tmp/portworx-enterprise.yaml"
+#vagrant ssh master.calvarado04.com -c "sudo kubectl --kubeconfig=/etc/kubernetes/admin.conf apply -f /tmp/portworx-enterprise.yaml"
 
 #Deploy Portworx Essentials
 #vagrant ssh master.calvarado04.com -c "sudo kubectl --kubeconfig=/etc/kubernetes/admin.conf apply -f /tmp/portworx-essentials.yaml"
@@ -35,6 +35,7 @@ vagrant ssh master.calvarado04.com  -c "sudo shutdown -r now"
 vagrant ssh worker0.calvarado04.com -c "sudo shutdown -r now"
 vagrant ssh worker1.calvarado04.com -c "sudo shutdown -r now"
 vagrant ssh worker2.calvarado04.com -c "sudo shutdown -r now"
+vagrant ssh worker3.calvarado04.com -c "sudo shutdown -r now"
 
 #echo Lets wait for all the nodes to become available. Sleeping for two minutes...
 

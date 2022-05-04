@@ -8,6 +8,7 @@ cat << EOF > /etc/hosts
 192.168.121.200 worker0.calvarado04.com
 192.168.121.201 worker1.calvarado04.com
 192.168.121.202 worker2.calvarado04.com
+192.168.121.203 worker3.calvarado04.com
 EOF
 
 curl -fsSLo /usr/share/keyrings/kubernetes-archive-keyring.gpg https://packages.cloud.google.com/apt/doc/apt-key.gpg
