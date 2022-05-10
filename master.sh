@@ -4,7 +4,7 @@ set -e
 kubeadm config images pull --kubernetes-version=v${KUBERNETES_VERSION}
 
 kubeadm init --cri-socket /var/run/crio/crio.sock --pod-network-cidr=10.244.0.0/16 \
-        --token ${TOKEN} --apiserver-advertise-address=${MASTER_IP} --kubernetes-version=v${KUBERNETES_VERSION} --upload-certs --apiserver-cert-extra-sans=localhost,127.0.0.1,0.tcp.ngrok.io
+        --token ${TOKEN} --apiserver-advertise-address=${MASTER_IP} --kubernetes-version=v${KUBERNETES_VERSION} --upload-certs --apiserver-cert-extra-sans=localhost,127.0.0.1,5.tcp.ngrok.io,3.tcp.ngrok.io
 
 DROPLET_IP_ADDRESS=$(ip addr show dev eth0 | awk 'match($0,/inet (([0-9]|\.)+).* scope global eth0$/,a) { print a[1]; exit }')
 

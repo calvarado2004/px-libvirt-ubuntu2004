@@ -2,20 +2,19 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: argo-cd-ingress
-  namespace: argo-cd
+  namespace: argocd
   annotations:
-    nginx.ingress.kubernetes.io/app-root: /argo-cd
-
+    nginx.ingress.kubernetes.io/app-root: /argocd
 spec:
   ingressClassName: nginx
   rules:
-    - host: worker2.calvarado04.com
+    - host: k8s-asus.calvarado04.com
       http:
         paths:
-          - path: /argo-cd
+          - path: /argocd
             pathType: Prefix
             backend:
               service:
-                name: argo-cd-1649682985-server
+                name: argo-cd-1651634282-server
                 port: 
                   number: 80
