@@ -22,7 +22,7 @@ vagrant ssh master.calvarado04.com -c "sudo kubectl --kubeconfig=/etc/kubernetes
 
 vagrant ssh master.calvarado04.com -c "sudo kubectl --kubeconfig=/etc/kubernetes/admin.conf apply -f /tmp/metrics.yaml"
 
-vagrant ssh master.calvarado04.com -c "sudo kubectl --kubeconfig=/etc/kubernetes/admin.conf apply -f 'https://install.portworx.com/2.10?comp=prometheus-operator&kbver=1.23.5'"
+vagrant ssh master.calvarado04.com -c "sudo kubectl --kubeconfig=/etc/kubernetes/admin.conf apply -f 'https://install.portworx.com/2.10?comp=prometheus-operator&kbver=1.24.0'"
 
 vagrant ssh master.calvarado04.com -c "sudo kubectl --kubeconfig=/etc/kubernetes/admin.conf label nodes worker0.calvarado04.com worker1.calvarado04.com worker2.calvarado04.com px/metadata-node=true"
 

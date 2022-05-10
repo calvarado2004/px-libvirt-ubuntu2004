@@ -2,7 +2,7 @@ apiServer:
   certSANs:
   - localhost
   - 127.0.0.1
-  - 0.tcp.ngrok.io
+  - 5.tcp.ngrok.io
   extraArgs:
     authorization-mode: Node,RBAC
   timeoutForControlPlane: 4m0s
@@ -16,7 +16,7 @@ etcd:
     dataDir: /var/lib/etcd
 imageRepository: k8s.gcr.io
 kind: ClusterConfiguration
-kubernetesVersion: v1.23.5
+kubernetesVersion: v1.24.0
 networking:
   dnsDomain: cluster.local
   podSubnet: 10.244.0.0/16
