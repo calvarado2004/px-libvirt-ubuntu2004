@@ -1,0 +1,28 @@
+kind: StorageClass
+apiVersion: storage.k8s.io/v1
+metadata:
+  name: portworx-db-sc
+  annotations:
+    storageclass.kubernetes.io/is-default-class: "true"
+provisioner: kubernetes.io/portworx-volume
+parameters:
+  repl: "2"
+  io_profile: "db_remote"
+  io_priority: "high"
+  cow_ondemand: "false"
+  secure: "true"
+  placement_strategy: "postgres-volume-anti-affinity"
+allowVolumeExpansion: true
+---
+apiVersion: portworx.io/v1beta2
+kind: VolumePlacementStrategy
+metadata:
+  name: postgres-volume-anti-affinity
+spec:
+  volumeAntiAffinity:
+  - enforcement: preferred
+    matchExpressions:
+      - key: app
+        operator: In
+        values:
+        - postgres
