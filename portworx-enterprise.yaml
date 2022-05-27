@@ -17,6 +17,9 @@ spec:
     - /dev/vdc
     journalDevice: auto
     kvdbDevice: /dev/vdb
+  runtimeOptions:
+   enable_relaxed_rset_degradation: "1"
+   rpc_timeout_sec: "5"
   network:
     dataInterface: eth0
     mgmtInterface: eth0
@@ -42,6 +45,9 @@ spec:
           px-node: storageless
     storage:
       devices: []
+    runtimeOptions:
+      enable_relaxed_rset_degradation: "1"
+      rpc_timeout_sec: "5"
     network:
       dataInterface: enp0s8
       mgmtInterface: enp0s8
