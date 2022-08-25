@@ -8,7 +8,7 @@ metadata:
     portworx.io/install-source: "https://install.portworx.com/?operator=true&mc=false&kbver=1.22.4&b=true&s=%2Fdev%2Fsdc&j=auto&kd=%2Fdev%2Fsdb&m=eth1&d=eth1&c=px-asustuf-cluster-7208c62c-0c76-4157-b2eb-b6391a19e9fe&stork=true&csi=true&mon=true&tel=false&st=k8s&promop=true"
     portworx.io/misc-args: "-cluster_domain alpharetta-ga -rt_opts='enable_relaxed_rset_degradation=1,rpc_timeout_sec=5,enable-failure-domain-awareness=1'"
 spec:
-  image: portworx/oci-monitor:2.10.0
+  image: portworx/oci-monitor:2.11.2
   imagePullPolicy: IfNotPresent
   kvdb:
     internal: true
@@ -22,7 +22,7 @@ spec:
     mgmtInterface: eth0
   secretsProvider: k8s
   stork:
-    image: openstorage/stork:2.9.0
+    image: openstorage/stork:2.11.2
     enabled: true
     args:
       webhook-controller: "true"
@@ -42,6 +42,7 @@ spec:
           px-node: storageless
     storage:
       devices: []
+      journalDevice: []
     network:
       dataInterface: enp0s8
       mgmtInterface: enp0s8
