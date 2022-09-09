@@ -32,8 +32,9 @@ spec:
     prometheus:
       enabled: true
       exportMetrics: true
-  featureGates:
-    CSI: "true"
+  csi:
+    enabled: true
+    installSnapshotController: true
   nodes:
   - selector:
       #nodeName: <node-1>
