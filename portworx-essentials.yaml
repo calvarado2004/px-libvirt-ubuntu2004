@@ -8,7 +8,7 @@ metadata:
     portworx.io/install-source: "https://install.portworx.com/?operator=true&mc=false&kbver=1.22.5&oem=esse&user=f6ad1663-9947-11eb-a2c5-c24e499c7467&b=true&s=%2Fdev%2Fsdd&j=auto&kd=%2Fdev%2Fsdc&m=enp0s8&d=enp0s8&c=px-vboxlab-cluster-b76338c7-9902-4093-b1d4-d94ee313c7c4&stork=true&csi=true&mon=true&tel=false&st=k8s&promop=true"
     portworx.io/misc-args: "--oem esse -cluster_domain alpharetta-ga"
 spec:
-  image: portworx/oci-monitor:2.10.0
+  image: portworx/oci-monitor:2.11.2
   imagePullPolicy: IfNotPresent
   kvdb:
     internal: true
@@ -22,7 +22,7 @@ spec:
     mgmtInterface: eth0
   secretsProvider: k8s
   stork:
-    image: openstorage/stork:2.9.0
+    image: openstorage/stork:2.11.2
     enabled: true
     args:
       webhook-controller: "true"
@@ -32,8 +32,9 @@ spec:
     prometheus:
       enabled: true
       exportMetrics: true
-  featureGates:
-    CSI: "true"
+  csi:
+    enabled: true
+    installSnapshotController: true
 ---
 apiVersion: v1
 kind: Secret
