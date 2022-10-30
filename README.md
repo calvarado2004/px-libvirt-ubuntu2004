@@ -145,6 +145,14 @@ ETCD dashboard\
 Volume dashboard\
 ![Volume dashboard](/images/grafana-volume.png)
 
+# Token for kube-api Readiness and Liveness Probes
+
+Before proceeding with security improvements on your master node, create a token and use it on the kube-api config file.
+
+```
+kubectl create token default -n kube-system --duration=999999h
+```
+
 # About this project
 
 This is a derivative project from:
