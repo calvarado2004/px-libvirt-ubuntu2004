@@ -1,5 +1,5 @@
 #number of worker nodes
-NUM_WORKERS = 4
+NUM_WORKERS = 3
 # number of extra disks per worker
 NUM_DISKS = 1
 # size of each disk in gigabytes
@@ -7,7 +7,7 @@ DISK_GBS = 203
 
 MAC = "52:54:00:00:01:1"
 
-KUBERNETES_VERSION = "1.24.0"
+KUBERNETES_VERSION = "1.24.6"
 
 ENV["VAGRANT_EXPERIMENTAL"] = "disks"
 

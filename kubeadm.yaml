@@ -1,5 +1,6 @@
 apiServer:
   certSANs:
+  - 192.168.121.100
   - localhost
   - 127.0.0.1
   - 5.tcp.ngrok.io
@@ -16,7 +17,7 @@ etcd:
     dataDir: /var/lib/etcd
 imageRepository: k8s.gcr.io
 kind: ClusterConfiguration
-kubernetesVersion: v1.24.0
+kubernetesVersion: v1.24.6
 networking:
   dnsDomain: cluster.local
   podSubnet: 10.244.0.0/16
