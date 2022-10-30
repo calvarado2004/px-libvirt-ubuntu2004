@@ -23,13 +23,13 @@ Due to the CKA, CKAD and CKS certifications uses Calico, I upgraded this cluster
 
 Current versions (this can change in the future), that are working:\
 \
--Kubernetes 1.23.5.
+-Kubernetes 1.24.6.
 \
--Kernel 5.4.0-105 with kernel-headers installed.
+-Kernel 5.4.0-126 with kernel-headers installed.
 \
--Portworx 2.10.0 with CSI enabled.
+-Portworx 2.12.0 with CSI enabled.
 \
--Stork 2.9.0.
+-Stork 2.12.0.
 \
 -NGINX Ingress Controller v.1.1.1
 
@@ -93,10 +93,10 @@ sudo virsh net-list
 $ ./CreateCluster.sh
 $ vagrant ssh master -c "sudo kubectl --kubeconfig=/etc/kubernetes/admin.conf get nodes"
 NAME      STATUS   ROLES                  AGE     VERSION
-master.calvarado04.com    Ready    control-plane,master   8m29s   v1.23.5
-worker0.calvarado04.com   Ready    <none>                 6m10s   v1.23.5
-worker1.calvarado04.com   Ready    <none>                 3m27s   v1.23.5
-worker2.calvarado04.com   Ready    <none>                 65s     v1.23.5
+master.calvarado04.com    Ready    control-plane,master   8m29s   v1.24.6
+worker0.calvarado04.com   Ready    <none>                 6m10s   v1.24.6
+worker1.calvarado04.com   Ready    <none>                 3m27s   v1.24.6
+worker2.calvarado04.com   Ready    <none>                 65s     v1.24.6
 
 ```
 
@@ -106,10 +106,10 @@ worker2.calvarado04.com   Ready    <none>                 65s     v1.23.5
 $ vagrant ssh master -c "sudo cat /etc/kubernetes/admin.conf" > ${HOME}/.kube/config
 $ kubectl get nodes
 NAME                  STATUS   ROLES                  AGE     VERSION
-master.calvarado04.com    Ready    control-plane,master   15m     v1.23.5
-worker0.calvarado04.com   Ready    <none>                 13m     v1.23.5
-worker1.calvarado04.com   Ready    <none>                 11m     v1.23.5
-worker2.calvarado04.com   Ready    <none>                 8m58s   v1.23.5
+master.calvarado04.com    Ready    control-plane,master   15m     v1.24.6
+worker0.calvarado04.com   Ready    <none>                 13m     v1.24.6
+worker1.calvarado04.com   Ready    <none>                 11m     v1.24.6
+worker2.calvarado04.com   Ready    <none>                 8m58s   v1.24.6
 ```
 Check the PX pods status:
 
