@@ -71,6 +71,18 @@ for certificate in $(vagrant ssh master.calvarado04.com -c "sudo kubectl --kubec
 done
 
 
+#Enable Calico eBPF
+
+vagrant ssh master.calvarado04.com -c "sudo mkdir -p /root/.kube && sudo cp /etc/kubernetes/admin.conf /root/.kube/config"
+
+vagrant ssh master.calvarado04.com -c "sudo curl -Ls https://github.com/projectcalico/calico/releases/download/v3.24.3/calicoctl-linux-amd64 -o calicoctl && sudo chmod +x ./calicoctl && sudo mv ./calicoctl /usr/local/bin/"
+
+vagrant ssh master.calvarado04.com -c "sudo kubectl patch ds -n kube-system kube-proxy -p '{\"spec\":{\"template\":{\"spec\":{\"nodeSelector\":{\"non-calico\": \"true\"}}}}}'"
+
+vagrant ssh master.calvarado04.com -c "sudo calicoctl patch felixconfiguration default --patch='{\"spec\": {\"bpfEnabled\": true}}'"
+
+
+
 #Day 2 tasks to perform:
 
 #vagrant ssh master.calvarado04.com -c "sudo cat /etc/kubernetes/admin.conf" > ${HOME}/.kube/config

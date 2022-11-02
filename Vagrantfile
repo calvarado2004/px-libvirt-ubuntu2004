@@ -41,7 +41,7 @@ Vagrant.configure("2") do |config|
   
     
     master.vm.provision :file do |file|
-      file.source = "calico.yml"
+      file.source = "calico-ebpf.yml"
       file.destination = "/tmp/calico.yml"
     end
 

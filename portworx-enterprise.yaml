@@ -15,7 +15,7 @@ spec:
   storage:
     devices:
     - /dev/vdc
-    journalDevice: auto
+    journalDevice: "auto"
     kvdbDevice: /dev/vdb
   network:
     dataInterface: eth0
@@ -43,7 +43,7 @@ spec:
           px-node: storageless
     storage:
       devices: []
-      journalDevice: []
+      journalDevice: ""
     network:
       dataInterface: enp0s8
       mgmtInterface: enp0s8
